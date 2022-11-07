@@ -10,9 +10,10 @@
     ],
     "license": "MIT",
     "require": {
+        "php": ">=7.3",
         "ext-json": "*",
         "ext-redis": "*",
-        "symfony/messenger": "^4.4"
+        "symfony/messenger": "^v5.4.14"
     },
     "autoload": {
         "psr-4": {
@@ -25,12 +26,13 @@
         }
     },
     "require-dev": {
+        "symfony/phpunit-bridge": "^5.0",
         "nyholm/symfony-bundle-test": "^1.6",
-        "phpunit/phpunit": "^7.3",
-        "symfony/dependency-injection": "^4.1",
-        "symfony/http-kernel": "^4.1",
-        "symfony/property-access": "^4.1",
-        "symfony/serializer": "^4.1"
+        "phpunit/phpunit": "^9.5",
+        "symfony/dependency-injection": "^v5.4.13",
+        "symfony/http-kernel": "^v5.4.13",
+        "symfony/property-access": "^v5.4.15",
+        "symfony/serializer": "^v5.4.15"
     },
     "scripts": {
         "test": "phpunit --testdox --colors=always"

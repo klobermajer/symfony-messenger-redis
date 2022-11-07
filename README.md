@@ -2,7 +2,7 @@
 
 ![PHP Tests](https://github.com/krakphp/symfony-messenger-redis/workflows/PHP%20Tests/badge.svg?branch=master&event=push)
 
-This provides custom Redis List Integration with the Symfony Messenger ^4.4 system.
+This provides custom Redis List Integration with the Symfony Messenger ^5.4 system.
 
 The standard redis implementation requires redis 5.0 and utilizes the streams feature, this adapter uses redis lists to power the queue functionality.
 
@@ -34,9 +34,11 @@ framework:
         options: { queue: queue_acme }
 ```
 
-Where `MESSENGER_TRANSPORT_DSN` env is like: `redis://localhost:6379`
+Where `MESSENGER_TRANSPORT_DSN` env is like: `redis://localhost:6379?use_krak_redis=true`
 
 This will register a transport named `acme_redis` which will properly use the configured Redis transport from this library.
+
+Remember to add `use_krak_redis=true` parameter in dns. In other case, symfony redis transport will be used.
 
 ### Unique Messages
 
@@ -102,19 +104,7 @@ It won't hurt anything other than storage to have those `_processing` lists take
 
 ### Using Symfony's Redis Transport at the same time
 
-Both symfony's redis and the krak redis transport register the dsn prefix: `redis://`. In the scenario that you want to support both transports, you'll need to use the `use_krak_redis` option to disable this libraries redis transport.
-
-```yaml
-framework:
-  messenger:
-    transports:
-      krak_redis:
-        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-        options: { queue: queue_acme }
-      sf_redis:
-        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-        options: { use_krak_redis: false } # this allows symfony's redis transport factory to take precedence
-```
+Both symfony's redis and the krak redis transport register the dsn prefix: `redis://`. In the scenario that you want to support both transports, you'll need to use the `use_krak_redis` query param to enable this libraries redis transport.
 
 ## Testing
 

@@ -26,7 +26,7 @@ final class TransportTest extends TestCase
     /** @var Envelope */
     private $envelope;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
         $this->transportFactory = new RedisTransportFactory();
         $this->given_a_redis_client_is_configured_with_a_fresh_redis_db();
@@ -52,7 +52,7 @@ final class TransportTest extends TestCase
 
     /** @test */
     public function supports_tls() {
-        $this->given_the_redis_transport_is_setup_from_dsn_and_options('rediss://redis?queue=messenger');
+        $this->given_the_redis_transport_is_setup_from_dsn_and_options('rediss://redis?queue=messenger&use_krak_redis=true');
         $this->then_the_redis_transport_connect_params_use_tls();
     }
 
