@@ -22,8 +22,9 @@ final class RedisTransportFactory implements TransportFactoryInterface
      */
     public function supports(string $dsn, array $options): bool {
         $parsedUrl = \parse_url($dsn);
+
         if (!$parsedUrl) {
-            throw new InvalidArgumentException(sprintf('The given Redis DSN "%s" is invalid.', $dsn));
+            return false;
         }
 
         \parse_str($parsedUrl['query'] ?? '', $query);
