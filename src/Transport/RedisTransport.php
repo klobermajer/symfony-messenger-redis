@@ -49,7 +49,7 @@ final class RedisTransport implements TransportInterface, MessageCountAwareInter
         }
 
         $host = $parsedUrl['host'] ?? '127.0.0.1';
-        if ($parsedUrl['scheme'] === 'rediss') {
+        if ($parsedUrl['scheme'] === 'krak-rediss') {
             $host = 'tls://'.$host;
         }
 

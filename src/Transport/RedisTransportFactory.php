@@ -21,16 +21,6 @@ final class RedisTransportFactory implements TransportFactoryInterface
      * of this implementation.
      */
     public function supports(string $dsn, array $options): bool {
-        $parsedUrl = \parse_url($dsn);
-
-        if (!$parsedUrl) {
-            return false;
-        }
-
-        \parse_str($parsedUrl['query'] ?? '', $query);
-
-        $useKrak = isset($query['use_krak_redis']) ? filter_var($query['use_krak_redis'], FILTER_VALIDATE_BOOLEAN) : false;
-
-        return (strpos($dsn, 'redis://') === 0 || strpos($dsn, 'rediss://') === 0) && $useKrak;
+        return (strpos($dsn, 'krak-redis://') === 0 || strpos($dsn, 'krak-rediss://') === 0);
     }
 }

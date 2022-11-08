@@ -34,11 +34,11 @@ framework:
         options: { queue: queue_acme }
 ```
 
-Where `MESSENGER_TRANSPORT_DSN` env is like: `redis://localhost:6379?use_krak_redis=true`
+Where `MESSENGER_TRANSPORT_DSN` env is like: `krak-redis://localhost:6379`
 
 This will register a transport named `acme_redis` which will properly use the configured Redis transport from this library.
 
-Remember to add `use_krak_redis=true` parameter in dns. In other case, symfony redis transport will be used.
+Remember to use `krak-redis` (or `krak-rediss` for tls connection) in dsn.
 
 ### Unique Messages
 
@@ -90,7 +90,7 @@ Here are the available options that can be provided to the transport options arr
 
 ### TLS Support
 
-To enable TLS support, make the DSN schema `rediss://` instead of `redis://` to note that the redis client should connect with TLS.
+To enable TLS support, make the DSN schema `krak-rediss://` instead of `krak-redis://` to note that the redis client should connect with TLS.
 
 ### Processed Queue
 
@@ -104,7 +104,7 @@ It won't hurt anything other than storage to have those `_processing` lists take
 
 ### Using Symfony's Redis Transport at the same time
 
-Both symfony's redis and the krak redis transport register the dsn prefix: `redis://`. In the scenario that you want to support both transports, you'll need to use the `use_krak_redis` query param to enable this libraries redis transport.
+For symfony's redis transport use just `redis://` in dsn.
 
 ## Testing
 

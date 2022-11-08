@@ -52,7 +52,7 @@ final class TransportTest extends TestCase
 
     /** @test */
     public function supports_tls() {
-        $this->given_the_redis_transport_is_setup_from_dsn_and_options('rediss://redis?queue=messenger&use_krak_redis=true');
+        $this->given_the_redis_transport_is_setup_from_dsn_and_options('krak-rediss://redis?queue=messenger');
         $this->then_the_redis_transport_connect_params_use_tls();
     }
 
@@ -210,16 +210,16 @@ final class TransportTest extends TestCase
     }
 
     private function given_the_redis_transport_is_setup_from_dsn_and_options(?string $dsn = null, array $options = []) {
-        $this->transport = $this->createTransportFromDSNIfSupported($dsn ?? getenv('REDIS_DSN'), $options);
+        $this->transport = $this->createTransportFromDSNIfSupported($dsn ?? getenv('KRAK_REDIS_DSN'), $options);
     }
 
     private function given_the_redis_transport_contains_db(string $db, string $place) {
         if ($place === 'options') {
-            $this->given_the_redis_transport_is_setup_from_dsn_and_options(getenv('REDIS_DSN'), ['db' => $db]);
+            $this->given_the_redis_transport_is_setup_from_dsn_and_options(getenv('KRAK_REDIS_DSN'), ['db' => $db]);
         } else if ($place === 'query_string') {
-            $this->given_the_redis_transport_is_setup_from_dsn_and_options(getenv('REDIS_DSN').'&db='.$db);
+            $this->given_the_redis_transport_is_setup_from_dsn_and_options(getenv('KRAK_REDIS_DSN').'&db='.$db);
         } else if ($place === 'path') {
-            [$base, $query] = explode('?', getenv('REDIS_DSN'));
+            [$base, $query] = explode('?', getenv('KRAK_REDIS_DSN'));
             $this->given_the_redis_transport_is_setup_from_dsn_and_options($base . '/'.$db . '?' . $query);
         } else {
             throw new \LogicException('Invalid place: ' . $place);

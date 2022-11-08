@@ -72,7 +72,7 @@ final class BundleTest extends BaseBundleTestCase
     private function createKrakRedisTransport(): RedisTransport {
         /** @var RedisTransportFactory $transportFactory */
         $transportFactory = $this->getContainer()->get(RedisTransportFactory::class);
-        return $transportFactory->createTransport(getenv('REDIS_DSN'), [
+        return $transportFactory->createTransport(getenv('KRAK_REDIS_DSN'), [
             'blocking_timeout' => 1,
         ], $this->getContainer()->get('messenger.default_serializer'));
     }

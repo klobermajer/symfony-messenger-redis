@@ -3,7 +3,7 @@ framework:
     enabled: true
   messenger:
     transports:
-      krak_redis: 'redis://default:password123@redis:6379?queue=messenger&use_krak_redis=true'
+      krak_redis: 'krak-redis://default:password123@redis:6379?queue=messenger'
       sf_redis: 'redis://default:password123@redis:6379'
     routing:
       'Krak\SymfonyMessengerRedis\Tests\Feature\Fixtures\KrakRedisMessage': krak_redis
