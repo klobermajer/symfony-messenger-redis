@@ -2,6 +2,7 @@
 
 namespace Krak\SymfonyMessengerRedis\Transport;
 
+use Symfony\Component\Messenger\Exception\InvalidArgumentException;
 use Symfony\Component\Messenger\Transport\{
     TransportInterface,
     TransportFactoryInterface,
@@ -20,6 +21,6 @@ final class RedisTransportFactory implements TransportFactoryInterface
      * of this implementation.
      */
     public function supports(string $dsn, array $options): bool {
-        return (strpos($dsn, 'redis://') === 0 || strpos($dsn, 'rediss://') === 0) && boolval($options['use_krak_redis'] ?? true);
+        return (strpos($dsn, 'krak-redis://') === 0 || strpos($dsn, 'krak-rediss://') === 0);
     }
 }
