@@ -28,11 +28,11 @@
     "require-dev": {
         "symfony/phpunit-bridge": "^5.0",
         "nyholm/symfony-bundle-test": "^1.6",
-        "phpunit/phpunit": "^9.5",
-        "symfony/dependency-injection": "^v5.4.13",
-        "symfony/http-kernel": "^v5.4.13",
-        "symfony/property-access": "^v5.4.15",
-        "symfony/serializer": "^v5.4.15"
+        "phpunit/phpunit": "^9.0",
+        "symfony/dependency-injection": "^5.4",
+        "symfony/http-kernel": "^5.4",
+        "symfony/property-access": "^5.4",
+        "symfony/serializer": "^5.4"
     },
     "scripts": {
         "test": "phpunit --testdox --colors=always"
